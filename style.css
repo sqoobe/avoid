@@ -1,0 +1,17 @@
+body {
+    background: #333;
+}
+.header{
+    padding-bottom: 5px;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 30px);
+    padding: 20px;
+    gap: 5px;
+    border: 1px solid gray;
+    background: #222;
+}
