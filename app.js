@@ -51,7 +51,36 @@ function startGame() {
 function loop() {
   let stopGame = false;
 
-  //addiing collision code
+  //make the cell go down
+  for (let i = enemyCells.length - 1; i >= 0; i--) {
+    const cell = enemyCells[i];
+    const nextCell = cells[i + 3];
+    const enemy = cell.children[0];
+
+    if (!enemy) {
+      continue;
+    }
+    nextCell.appendChild(enemy);
+
+    //check for collition
+    if (playerCells.includes(nextCell)) {
+      if (nextCell.querySelector(".player")) {
+        stopGame = true;
+      } else {
+        score++; //add score
+        speed = Math.max(100, speed - 25); //max speed at 100 milliseconds
+        scoreDisplay.innerHTML = score; //updates score
+        enemy.remove(); //remove enemy
+      }
+    }
+  }
+
+  //even drop count, add new enemy
+  if (dropCount % 2 === 0) {
+    const position = Math.floor(Math.random() * 3);
+
+    enemyCells[position].innerHTML = '<div class="enemy"></div>';
+  }
 
   if (stopGame) {
     alert("Your score: " + score + ". Close this window to play again.");
